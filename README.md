@@ -1,1 +1,1 @@
-# Gr.24---Modelet-e-te-Dhenave-dhe-Gjuhet-e-Pyetesoreve
+# Gr.24-Modelet-e-te-Dhenave-dhe-Gjuhet-e-Pyetesoreve
