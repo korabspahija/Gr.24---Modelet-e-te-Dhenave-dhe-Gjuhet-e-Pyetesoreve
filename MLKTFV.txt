@@ -1,56 +1,67 @@
-create table banesat(
-    banesaId int AUTOINCREMENT,
-    emriKompleksit nvarchar(),
-    statusi nvarchar, --(A ka perfundu ndertimi)
+CREATE TABLE banesat(
+    banesaId int AUTOINCREMENT ON DELETE CASCADE,
+    emriKompleksit varchar2(),
+    statusi varchar2, --(A ka perfundu ndertimi)
     numriKateve int,
     PRIMARY KEY(banesatId)
 );
 
-create table hyrjet(
+CREATE TABLE hyrjet(
     hyrjaId int AUTOINCREMENT,
-    hyrjaName nvarchar(),
-    hyrjaBanesaId int,
+    hyrjaName varchar2(),
+    hyrjaBanesaId int ,
     numriApartamenteve int,
     PRIMARY KEY(hyrjaId),
     FOREIGN KEY(hyrjaBanesaId ) REFERENCES banesat(banesaId)
 );
 
-create table apartamentet(
+CREATE TABLE apartamentet(
     apartamentiId int AUTOINCREMENT,
     hyrjaId int,
-    tipiId int, --tabele per tipet(tipi A,B,C per permasa)
+    tipi tipi, --tabele per tipet(tipi A,B,C per permasa) ose lokal/biznes
     kati    int,
     statusiId int, --tabele per statusin
-    kahu nvarchar(),
+    kahu varchar2(),
     PRIMARY KEY(apartamentiId),
-    FOREIGN KEY(tipiId) REFERENCES tipet(tipiId),
     FOREIGN KEY(statusiId) REFERENCES statusi(statusiId)            
 );
 
-create table statusi(
-    statusiId int AUTOINCREMENT,
-    statusi nvarchar(),
-    PRIMARY KEY(statusiId)
+CREATE TABLE statusi(
+    statusiId int AUTOINCREMENT ON UPDATE CASCADE,
+    statusi varchar2(),
+    PRIMARY KEY(statusiId) --me qera, e zene, e lire, etj ...
 );
 
-create table tipet(
-    tipiId int AUTOINCREMENT,
-    tipi nvarchar(),
-    PRIMARY KEY(tipiId)
+CREATE TYPE tipi as OBJECT(
+    permasat varchar2(), 
+    lloji   varchar2()
+);
+ 
+CREATE TABLE palet(
+    Id int AUTOINCREMENT,
+    emriPlote varchar2(),
+    numriPersonal varchar2(),
+    numriTelefonit varchar2(),
+    numriBiznesit varchar2(),
+    email varchar2() unique,
+    adresa adresa,
+    roliID int, 
+    PRIMARY KEY(Id),
+    FOREIGN KEY(roliID)
 );
 
-create table stafi(
-    stafId int AUTOINCREMENT,
-    emriPlote nvarchar(),
-    numriPersonal nvarchar(),
-    numriTelefonit nvarchar(),
-    email nvarchar(),
-    
-    pronari nvarchar(), 
-    kombaniaNdertimore nvarchar(),
+CREATE TYPE adresa as OBJECT(
+    rruga varchar2(30),
+    qyteti varchar2(30),
+    kodiPostar varchar2(9)
+ );
 
-)
 
-create table pronari
-
+CREATE TABLE roli(
+    roliID int AUTOINCREMENT ON UPDATE CASCADE,
+    roli varchar2(),
+    PRIMARY KEY(roliID)
+);
+--pronar, staf, bleres, banor, 
+ 
 
