@@ -1,0 +1,56 @@
+create table banesat(
+    banesaId int AUTOINCREMENT,
+    emriKompleksit nvarchar(),
+    statusi nvarchar, --(A ka perfundu ndertimi)
+    numriKateve int,
+    PRIMARY KEY(banesatId)
+);
+
+create table hyrjet(
+    hyrjaId int AUTOINCREMENT,
+    hyrjaName nvarchar(),
+    hyrjaBanesaId int,
+    numriApartamenteve int,
+    PRIMARY KEY(hyrjaId),
+    FOREIGN KEY(hyrjaBanesaId ) REFERENCES banesat(banesaId)
+);
+
+create table apartamentet(
+    apartamentiId int AUTOINCREMENT,
+    hyrjaId int,
+    tipiId int, --tabele per tipet(tipi A,B,C per permasa)
+    kati    int,
+    statusiId int, --tabele per statusin
+    kahu nvarchar(),
+    PRIMARY KEY(apartamentiId),
+    FOREIGN KEY(tipiId) REFERENCES tipet(tipiId),
+    FOREIGN KEY(statusiId) REFERENCES statusi(statusiId)            
+);
+
+create table statusi(
+    statusiId int AUTOINCREMENT,
+    statusi nvarchar(),
+    PRIMARY KEY(statusiId)
+);
+
+create table tipet(
+    tipiId int AUTOINCREMENT,
+    tipi nvarchar(),
+    PRIMARY KEY(tipiId)
+);
+
+create table stafi(
+    stafId int AUTOINCREMENT,
+    emriPlote nvarchar(),
+    numriPersonal nvarchar(),
+    numriTelefonit nvarchar(),
+    email nvarchar(),
+    
+    pronari nvarchar(), 
+    kombaniaNdertimore nvarchar(),
+
+)
+
+create table pronari
+
+
